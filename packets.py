@@ -6,5 +6,5 @@ for n in range(10):
 	ipFlags=0 if((n+1)%5) else 4
 	payload="Bad" if((n+1)%2) else "Good"
 	ip=IP(src=srcIP, flags=ipFlags, dst=destIP, ttl=160)
-	tcpFlag = 'S' if((n+1) < 5) else 'FU'
-	send(ip/TCP(dport=RandNum(1000, 1009), flags=tcpFlag))
+	tcpFlag = 'S' if((n) < 5) else 'FU'
+	send(ip/TCP(sport=1000 + n, dport=80,flags=tcpFlag)/payload)
